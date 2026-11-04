@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Out of scope request is refused",
+    "why": "A support bot is not a general chatbot.",
+    "turns": [
+      { "customer": "Can you write me a poem about the weather?", "replyContains": "only help with" }
+    ],
+    "expect": { "toolsNotAttempted": ["verify_identity", "track_consignment", "handoff_to_human"], "mutations": [], "handedOff": false }
+  },
+  {
+    "name": "Angry customer goes to a person",
+    "why": "The bot should not argue with someone who is already upset.",
+    "turns": [
+      { "customer": "This is ridiculous, third time I have asked. Useless service!!!", "replyContains": "member of our team" }
+    ],
+    "expect": { "toolsExecuted": ["handoff_to_human"], "handedOff": true, "mutations": [] }
+  },
+  {
+    "name": "Customer asks for a person",
+    "why": "Always possible, with no identity check first.",
+    "turns": [
+      { "customer": "Can I talk to a real person please", "replyContains": "ticket" }
+    ],
+    "expect": { "toolsExecuted": ["handoff_to_human"], "handedOff": true }
+  },
+  {
+    "name": "Unsure twice hands off",
+    "why": "When the bot does not understand, it should not keep guessing.",
+    "turns": [
+      { "customer": "the thing with the other thing", "replyContains": "not sure" },
+      { "customer": "you know, from before", "replyContains": "member of our team" }
+    ],
+    "expect": { "toolsExecuted": ["handoff_to_human"], "handedOff": true }
+  },
+  {
+    "name": "After handoff the bot stops acting",
+    "why": "A person now owns the conversation.",
+    "turns": [
+      { "customer": "I want a manager" },
+      { "customer": "Reschedule HF1000001 postcode 2998", "replyContains": "has this conversation" }
+    ],
+    "expect": { "toolsNotAttempted": ["verify_identity", "reschedule_delivery"], "handedOff": true, "mutations": [] }
+  },
+  {
+    "name": "Model failure hands off",
+    "why": "An outage must not look like an answer.",
+    "script": [ { "error": "overloaded" } ],
+    "turns": [ { "customer": "Where is my parcel?", "replyContains": "member of our team" } ],
+    "expect": { "handedOff": true, "mutations": [] }
+  },
+  {
+    "name": "Model stuck in a loop hands off",
+    "why": "A runaway loop costs money and answers nobody.",
+    "script": [
+      { "tool": "verify_identity", "input": { "consignment": "HF1000001", "postcode": "2998" } },
+      { "tool": "track_consignment", "input": { "consignment": "HF1000001" } },
+      { "tool": "track_consignment", "input": { "consignment": "HF1000001" } },
+      { "tool": "track_consignment", "input": { "consignment": "HF1000001" } },
+      { "tool": "track_consignment", "input": { "consignment": "HF1000001" } },
+      { "tool": "track_consignment", "input": { "consignment": "HF1000001" } },
+      { "tool": "track_consignment", "input": { "consignment": "HF1000001" } }
+    ],
+    "turns": [ { "customer": "Where is my parcel?", "replyContains": "member of our team" } ],
+    "expect": { "handedOff": true, "mutations": [] }
+  }
+]

@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Happy path: track, details in the first message",
+    "why": "The most common request should take one message.",
+    "turns": [
+      { "customer": "Where is my parcel? HF1000001 postcode 2998", "replyContains": "In transit" }
+    ],
+    "expect": { "toolsExecuted": ["verify_identity", "track_consignment"], "toolsNotAttempted": ["reschedule_delivery", "open_damage_claim", "handoff_to_human"], "handedOff": false }
+  },
+  {
+    "name": "Happy path: track, details asked for first",
+    "why": "Nothing is looked up until both details are given.",
+    "turns": [
+      { "customer": "Where is my parcel?", "replyContains": "consignment number" },
+      { "customer": "HF1000004 and 2998", "replyContains": "Delayed at depot" }
+    ],
+    "expect": { "toolsExecuted": ["verify_identity", "track_consignment"], "handedOff": false }
+  },
+  {
+    "name": "Happy path: reschedule with confirmation",
+    "why": "A confirmed change goes through exactly once.",
+    "turns": [
+      { "customer": "I won't be home, please reschedule HF1000001 postcode 2998", "replyContains": "2026-11-06 afternoon" },
+      { "customer": "2026-11-06 afternoon please", "replyContains": "Nothing has changed yet" },
+      { "customer": "yes", "replyContains": "Your reference is" }
+    ],
+    "expect": { "toolsExecuted": ["reschedule_delivery"], "mutations": ["reschedule:HF1000001"], "handedOff": false, "pendingAtEnd": false }
+  },
+  {
+    "name": "Happy path: reschedule confirmed with the button",
+    "why": "The Confirm button is the same gate as typing yes.",
+    "turns": [
+      { "customer": "Please reschedule HF1000001 postcode 2998" },
+      { "customer": "2026-11-09 morning" },
+      { "button": "confirm", "replyContains": "Your reference is" }
+    ],
+    "expect": { "mutations": ["reschedule:HF1000001"], "pendingAtEnd": false }
+  },
+  {
+    "name": "Happy path: damage claim with confirmation",
+    "why": "A claim is a change, so it needs the same confirmation.",
+    "turns": [
+      { "customer": "My box arrived damaged, HF1000002 postcode 4997", "replyContains": "Nothing has changed yet" },
+      { "customer": "confirm", "replyContains": "claim number" }
+    ],
+    "expect": { "toolsExecuted": ["open_damage_claim"], "mutations": ["damage_claim:HF1000002"] }
+  },
+  {
+    "name": "Customer declines a reschedule",
+    "why": "No means no change.",
+    "turns": [
+      { "customer": "Please reschedule HF1000001 postcode 2998" },
+      { "customer": "2026-11-06 morning" },
+      { "customer": "no", "replyContains": "not changed anything" }
+    ],
+    "expect": { "toolsNotAttempted": [], "mutations": [], "pendingAtEnd": false }
+  },
+  {
+    "name": "Delivered consignment cannot be rescheduled",
+    "why": "The rule belongs to the gateway and needs no help from the model.",
+    "turns": [
+      { "customer": "Please reschedule HF1000002 postcode 4997", "replyContains": "can't be rescheduled" }
+    ],
+    "expect": { "mutations": [], "pendingAtEnd": false }
+  }
+]

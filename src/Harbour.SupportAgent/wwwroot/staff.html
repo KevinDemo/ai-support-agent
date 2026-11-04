@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conversation log - Harbour Freight Couriers</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body class="staff">
+<header class="staff-head">
+  <div>
+    <p class="eyebrow">Staff only (demo key: demo-staff-key)</p>
+    <h1>Conversation log</h1>
+  </div>
+  <form id="key-form">
+    <label for="key">Staff key</label>
+    <input id="key" type="password" autocomplete="off" required>
+    <button type="submit">Load</button>
+  </form>
+</header>
+<p id="error" class="error" role="alert"></p>
+<main class="staff-grid">
+  <ul id="conversations" class="conversations"></ul>
+  <ol id="events" class="events"></ol>
+</main>
+<script src="staff.js"></script>
+</body>
+</html>

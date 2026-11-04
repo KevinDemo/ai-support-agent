@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/evals/">
+    <Project Path="evals/Harbour.SupportAgent.Evals/Harbour.SupportAgent.Evals.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Harbour.SupportAgent/Harbour.SupportAgent.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Harbour.SupportAgent.Tests/Harbour.SupportAgent.Tests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parcel help - Harbour Freight Couriers</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body class="customer">
+<main class="layout">
+  <aside class="brief">
+    <p class="eyebrow">Harbour Freight Couriers (fictional)</p>
+    <h1>Where is my parcel?</h1>
+    <p>A demo support agent. Every action goes through guardrails written in code, so it cannot share details before an identity check or change a delivery without a clear yes.</p>
+    <p class="model">Model: <span id="model">...</span></p>
+
+    <h2>Demo consignments</h2>
+    <table>
+      <thead><tr><th>Number</th><th>Postcode</th><th>State</th></tr></thead>
+      <tbody>
+        <tr><td>HF1000001</td><td>2998</td><td>In transit</td></tr>
+        <tr><td>HF1000002</td><td>4997</td><td>Delivered</td></tr>
+        <tr><td>HF1000003</td><td>3996</td><td>Out for delivery</td></tr>
+        <tr><td>HF1000004</td><td>2998</td><td>Delayed</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Try saying</h2>
+    <ul id="suggestions" class="suggestions"></ul>
+    <p class="links"><a href="staff.html">Staff conversation log</a></p>
+  </aside>
+
+  <section class="chat" aria-label="Support chat">
+    <div id="messages" class="messages" role="log" aria-live="polite"></div>
+    <div id="pending" class="pending" hidden>
+      <p id="pending-summary"></p>
+      <button type="button" id="confirm">Yes, go ahead</button>
+      <button type="button" id="cancel" class="quiet">No, cancel</button>
+    </div>
+    <form id="composer" class="composer">
+      <label for="text" class="visually-hidden">Your message</label>
+      <input id="text" autocomplete="off" maxlength="2000" placeholder="Type your message" required>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+</main>
+<script src="chat.js"></script>
+</body>
+</html>
