@@ -117,7 +117,7 @@ A support agent connected to your own tracking system, with the scope agreed in 
 3. A trial on a real model with staff reading the log, before any customer sees it, and measured results on what it handled and what it handed off.
 4. Handoff into your existing helpdesk, and a staff log that fits how your team works.
 
-Details and contact: [kevindemo.github.io](https://oct28th.com).
+Details and contact: [oct28th.com](https://oct28th.com).
 
 ## Honest limitations
 
