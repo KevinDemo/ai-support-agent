@@ -2,6 +2,10 @@
 
 A chat agent that answers "Where is my parcel?", reschedules deliveries, opens damage claims and hands off to a person. It belongs to Harbour Freight Couriers, a fictional courier company, and all data is invented. The tracking system is a fake that lives in memory.
 
+![A tracking question answered after the identity check, then a reschedule that asks for a choice before changing anything.](docs/chat.png)
+
+*A tracking question answered after the identity check, then a reschedule that asks for a choice before changing anything. Screenshot taken in a headless browser on 4 November 2026.*
+
 ## The problem
 
 Most courier support tickets ask the same few things, and a chatbot could answer many of them. The reason businesses hesitate is what a chatbot might do when it goes wrong: tell a stranger where someone's parcel is, confirm a delivery time it made up, or change a booking because a message told it to. Asking the model nicely in a system prompt does not remove those risks.
@@ -109,4 +113,4 @@ Details and contact: [kevindemo.github.io](https://kevindemo.github.io).
 - No rate limiting. Production needs it, plus a real login for staff instead of a shared key.
 - Handoff produces a ticket number from the fake API. There is no staff reply screen, so nobody actually answers.
 - The customer's messages are stored unredacted in the log, so a real deployment needs a retention policy.
-- The UI has not been checked in a browser. Browser automation was not available when this was built, so there are no screenshots in `docs/` yet. The same HTTP endpoints it calls are covered by tests.
+- The UI was checked with screenshots in a headless browser (see `docs/`), not with automated end-to-end browser tests.
