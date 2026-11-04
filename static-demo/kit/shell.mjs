@@ -47,7 +47,7 @@ ${styles.map((s) => `<link rel="stylesheet" href="${s}">`).join("\n")}
 <body>
 <header class="topbar">
   <div class="wrap topbar-row">
-    <a class="mark" href="https://kevindemo.github.io/" target="_blank" rel="noopener"><span class="mark-box" aria-hidden="true">KC</span>Kevin Chen</a>
+    <a class="mark" href="https://oct28th.com/" target="_blank" rel="noopener"><span class="mark-box" aria-hidden="true">KC</span>Kevin Chen</a>
     <span class="product">${esc(product)}</span>
     <nav aria-label="Links">
       ${nav}
