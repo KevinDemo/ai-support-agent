@@ -74,7 +74,7 @@ These scenarios prove the guardrails against the attacks written here. They do n
 
 ## Test results
 
-Latest run, Windows 11, .NET SDK 10.0.108: **59 tests, 59 passed, 0 failed, 0 skipped.** That includes all 28 scenarios, so a guardrail regression fails the build. The other 31 cover the lockout across conversations, identical answers for wrong and unknown details, proposal and execution, stale confirm buttons, what is accepted as a yes, the grounding check, the staff key, and the Anthropic wire format.
+Latest run, from a fresh clone on Windows 11, .NET SDK 10.0.108: **59 tests, 59 passed, 0 failed, 0 skipped**, with `dotnet build` at 0 errors. That includes all 28 scenarios, so a guardrail regression fails the build. The other 31 cover the lockout across conversations, identical answers for wrong and unknown details, proposal and execution, stale confirm buttons, what is accepted as a yes, the grounding check, the staff key, and the Anthropic wire format.
 
 ## How to run
 
