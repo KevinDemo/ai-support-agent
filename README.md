@@ -82,7 +82,7 @@ Latest run, from a fresh clone on Windows 11, .NET SDK 10.0.108: **59 tests, 59 
 
 ## Live demo
 
-[https://kevindemo.github.io/ai-support-agent/](https://kevindemo.github.io/ai-support-agent/)
+[https://demo.oct28th.com/ai-support-agent/](https://demo.oct28th.com/ai-support-agent/)
 
 The chat page running in your browser, with a panel showing each tool call, gateway block and guard. It runs a JavaScript port of the offline model and the guardrails, and can replay all 28 eval scenarios, including the model scripted to misbehave. `node static-demo/verify.mjs` runs those scenarios through the port and compares tool calls and outcomes with `evals/results/latest.md` from the real code (28 of 28 match). It is keyword rules rather than a language model, so unusual wording may not be understood.
 
