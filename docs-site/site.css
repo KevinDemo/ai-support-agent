@@ -1,0 +1,87 @@
+/* Parcel help and the staff log. Used by the real service and copied into the static demo. Tokens live in theme.css. */
+
+.layout { display: grid; grid-template-columns: minmax(280px, 360px) minmax(0, 1fr); align-items: start; }
+.layout.static { grid-template-columns: 320px minmax(0, 1fr) 320px; }
+
+.brief { padding: var(--s-8) var(--gutter); border-right: 1px solid var(--line); }
+.brief h1 { font-size: var(--t-title); line-height: 1.2; letter-spacing: -.02em; margin-left: 0; }
+.brief > p { margin-top: var(--s-3); color: var(--ink-2); font-size: var(--t-small); }
+.brief h2 { margin-top: var(--s-8); margin-bottom: var(--s-2); font-size: var(--t-body); }
+.model { font: 400 var(--t-label)/1.5 var(--mono); }
+.brief table { font-size: var(--t-label); }
+.brief td, .brief th { padding-block: var(--s-2); }
+
+.suggestions button {
+  display: block;
+  width: 100%;
+  min-height: 0;
+  padding: var(--s-2) 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font: 400 var(--t-small)/1.4 var(--sans);
+  text-align: left;
+}
+.suggestions button:hover:not(:disabled) { background: var(--surface-raised); border-color: var(--line); }
+#scenarios { max-height: 18rem; overflow-y: auto; }
+.links { margin-top: var(--s-4); font-size: var(--t-small); }
+
+/* Stays in view while the longer sidebar scrolls, so a suggestion clicked low down still shows its answer. */
+.chat { position: sticky; top: 0; display: flex; flex-direction: column; height: min(760px, 100vh); min-width: 0; background: var(--surface); }
+.messages { flex: 1; display: flex; flex-direction: column; gap: var(--s-3); padding: var(--s-8) var(--s-6); overflow-y: auto; }
+
+.bubble { max-width: min(36rem, 90%); padding: var(--s-3) var(--s-4); border: 1px solid var(--line); border-radius: var(--r); overflow-wrap: anywhere; font-size: var(--t-small); }
+.bubble.agent { align-self: flex-start; background: var(--surface-raised); }
+.bubble.customer { align-self: flex-end; border-color: var(--ink); background: var(--ink); color: var(--on-ink); }
+.bubble.handoff { border-color: var(--line-strong); }
+
+.replay-note { max-width: none; padding: var(--s-3) var(--s-6); border-bottom: 1px solid var(--line); color: var(--ink-2); font: 400 var(--t-label)/1.5 var(--mono); }
+
+.pending { padding: var(--s-4) var(--s-6); border-top: 1px solid var(--line-strong); background: var(--surface-raised); }
+.pending p { max-width: none; margin-bottom: var(--s-3); font-size: var(--t-small); font-weight: 500; }
+.pending button { margin-right: var(--s-2); }
+
+.composer { display: flex; flex-wrap: wrap; gap: var(--s-2); padding: var(--s-4) var(--s-6); border-top: 1px solid var(--line); }
+.composer input { flex: 1 1 12rem; width: auto; min-width: 0; }
+
+.trace-panel { position: sticky; top: 0; display: flex; flex-direction: column; height: min(760px, 100vh); min-width: 0; padding: var(--s-8) var(--s-6); border-left: 1px solid var(--line); }
+.trace-panel h2 { margin-bottom: var(--s-1); font-size: var(--t-body); }
+.trace-panel .events { flex: 1; padding: 0; margin-top: var(--s-3); overflow-y: auto; }
+.trace-panel .event { grid-template-columns: minmax(0, 1fr); gap: var(--s-1); }
+
+/* Staff log */
+
+.staff-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: var(--s-4); padding: var(--s-12) var(--gutter) var(--s-8); border-bottom: 1px solid var(--line); }
+.staff-head p { color: var(--ink-2); font-size: var(--t-small); margin-top: var(--s-2); }
+#key-form { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2); color: var(--ink-2); font-size: var(--t-label); }
+#key-form input { width: 14rem; }
+#error { padding-inline: var(--gutter); }
+#error:not(:empty) { padding-block: var(--s-3); }
+
+.staff-grid { display: grid; grid-template-columns: 280px minmax(0, 1fr); }
+.conversations { min-height: 60vh; padding: var(--s-4) var(--gutter); border-right: 1px solid var(--line); }
+.conversations button { display: block; width: 100%; min-height: 0; padding: var(--s-3) 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: transparent; color: var(--ink); font-weight: 400; text-align: left; }
+.conversations button:hover:not(:disabled) { background: var(--surface-raised); border-color: var(--line); }
+.when, .counts { display: block; }
+.when { font: 400 var(--t-label)/1.5 var(--mono); }
+.counts { margin-top: var(--s-1); color: var(--ink-2); font-size: var(--t-label); line-height: 1.4; }
+
+.events { padding: var(--s-4) var(--gutter); }
+.event { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: var(--s-3); padding: var(--s-2) 0; border-bottom: 1px solid var(--line); }
+.kind { color: var(--ink-3); font: 400 var(--t-label)/1.5 var(--mono); }
+.detail { font-size: var(--t-small); overflow-wrap: anywhere; }
+.event.tool_call .detail, .event.tool_result .detail, .event.tool_blocked .detail { font: 400 var(--t-label)/1.5 var(--mono); }
+.event.tool_blocked .kind, .event.guard .kind, .event.handoff .kind { color: var(--warn); }
+
+@media (max-width: 75rem) {
+  .layout.static { grid-template-columns: 300px minmax(0, 1fr); }
+  .trace-panel { position: static; grid-column: 1 / -1; height: auto; max-height: 30rem; border-left: 0; border-top: 1px solid var(--line); }
+}
+@media (max-width: 48rem) {
+  .layout, .layout.static, .staff-grid { grid-template-columns: minmax(0, 1fr); }
+  .brief { border-right: 0; border-bottom: 1px solid var(--line); }
+  .chat { position: static; height: 80vh; }
+  .conversations { min-height: 0; border-right: 0; }
+}

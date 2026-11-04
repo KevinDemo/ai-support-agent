@@ -3,26 +3,62 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Conversation log - Harbour Freight Couriers</title>
+<title>Conversation log - Harbour Freight Couriers (fictional)</title>
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f6f4">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0b0c">
+<script>
+(function () {
+  var root = document.documentElement;
+  root.classList.add("js");
+  try {
+    var saved = localStorage.getItem("theme");
+    if (saved === "light" || saved === "dark") root.dataset.theme = saved;
+  } catch (e) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Geist+Mono:wght@400..600&display=swap">
+<link rel="stylesheet" href="theme.css">
 <link rel="stylesheet" href="site.css">
 </head>
 <body class="staff">
-<header class="staff-head">
+<header class="topbar">
+  <div class="wrap topbar-row">
+    <a class="mark" href="https://kevindemo.github.io/" target="_blank" rel="noopener"><span class="mark-box" aria-hidden="true">KC</span>Kevin Chen</a>
+    <span class="product">AI support agent</span>
+    <nav aria-label="Links">
+      <a href="index.html">Customer chat</a>
+      <a href="https://github.com/KevinDemo/ai-support-agent" target="_blank" rel="noopener">Source on GitHub</a>
+    </nav>
+    <fieldset class="theme">
+      <legend class="sr">Theme</legend>
+      <label><input type="radio" name="theme" value="system" checked><span>System</span></label>
+      <label><input type="radio" name="theme" value="light"><span>Light</span></label>
+      <label><input type="radio" name="theme" value="dark"><span>Dark</span></label>
+    </fieldset>
+  </div>
+</header>
+<div class="wrap sheet">
+<section class="staff-head">
   <div>
-    <p class="eyebrow">Staff only (demo key: demo-staff-key)</p>
     <h1>Conversation log</h1>
+    <p>Staff only (demo key: demo-staff-key)</p>
   </div>
   <form id="key-form">
     <label for="key">Staff key</label>
     <input id="key" type="password" autocomplete="off" required>
     <button type="submit">Load</button>
   </form>
-</header>
+</section>
 <p id="error" class="error" role="alert"></p>
 <main class="staff-grid">
   <ul id="conversations" class="conversations"></ul>
   <ol id="events" class="events"></ol>
 </main>
+</div>
+<script src="theme.js"></script>
 <script src="staff.js"></script>
 </body>
 </html>

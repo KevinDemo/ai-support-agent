@@ -80,6 +80,22 @@ These scenarios prove the guardrails against the attacks written here. They do n
 
 Latest run, from a fresh clone on Windows 11, .NET SDK 10.0.108: **59 tests, 59 passed, 0 failed, 0 skipped**, with `dotnet build` at 0 errors. That includes all 28 scenarios, so a guardrail regression fails the build. The other 31 cover the lockout across conversations, identical answers for wrong and unknown details, proposal and execution, stale confirm buttons, what is accepted as a yes, the grounding check, the staff key, and the Anthropic wire format.
 
+## Live demo
+
+[https://kevindemo.github.io/ai-support-agent/](https://kevindemo.github.io/ai-support-agent/)
+
+The chat page running in your browser, with a panel showing each tool call, gateway block and guard. It runs a JavaScript port of the offline model and the guardrails, and can replay all 28 eval scenarios, including the model scripted to misbehave. `node static-demo/verify.mjs` runs those scenarios through the port and compares tool calls and outcomes with `evals/results/latest.md` from the real code (28 of 28 match). It is keyword rules rather than a language model, so unusual wording may not be understood.
+
+```bash
+node static-demo/build.mjs
+```
+
+This needs only Node and writes `docs-site/`. Every asset path is relative, so it works under `/ai-support-agent/`. GitHub Pages only publishes a repo's root or `docs/`, so this folder goes out through a `gh-pages` branch or an Actions workflow. It has not been deployed yet.
+
+## Hosting the real service
+
+The static demo needs no server. To host the real .NET service as well, the repo has a multi-stage `Dockerfile` (.NET 10, listens on `$PORT`) and a `render.yaml` blueprint for Render's free web service plan. SQLite holds the conversation log and is created on start, the demo consignments are seeded in memory, and the offline model needs no key. The image itself has not been built, because Docker was not available on the machine where this was written. `dotnet publish` was run instead and the published build answered over HTTP with the same settings.
+
 ## How to run
 
 You need the .NET 10 SDK.

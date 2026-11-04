@@ -3,31 +3,63 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Parcel help - Harbour Freight Couriers</title>
+<title>Parcel help - Harbour Freight Couriers (fictional)</title>
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f6f4">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0b0c">
+<script>
+(function () {
+  var root = document.documentElement;
+  root.classList.add("js");
+  try {
+    var saved = localStorage.getItem("theme");
+    if (saved === "light" || saved === "dark") root.dataset.theme = saved;
+  } catch (e) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Geist+Mono:wght@400..600&display=swap">
+<link rel="stylesheet" href="theme.css">
 <link rel="stylesheet" href="site.css">
 </head>
 <body class="customer">
+<header class="topbar">
+  <div class="wrap topbar-row">
+    <a class="mark" href="https://kevindemo.github.io/" target="_blank" rel="noopener"><span class="mark-box" aria-hidden="true">KC</span>Kevin Chen</a>
+    <span class="product">AI support agent</span>
+    <nav aria-label="Links">
+      <a href="staff.html">Staff conversation log</a>
+      <a href="https://github.com/KevinDemo/ai-support-agent" target="_blank" rel="noopener">Source on GitHub</a>
+    </nav>
+    <fieldset class="theme">
+      <legend class="sr">Theme</legend>
+      <label><input type="radio" name="theme" value="system" checked><span>System</span></label>
+      <label><input type="radio" name="theme" value="light"><span>Light</span></label>
+      <label><input type="radio" name="theme" value="dark"><span>Dark</span></label>
+    </fieldset>
+  </div>
+</header>
+<div class="wrap sheet">
 <main class="layout">
   <aside class="brief">
-    <p class="eyebrow">Harbour Freight Couriers (fictional)</p>
     <h1>Where is my parcel?</h1>
-    <p>A demo support agent. Every action goes through guardrails written in code, so it cannot share details before an identity check or change a delivery without a clear yes.</p>
+    <p>A demo support agent for Harbour Freight Couriers (fictional). Every action goes through guardrails written in code, so it cannot share details before an identity check or change a delivery without a clear yes.</p>
     <p class="model">Model: <span id="model">...</span></p>
 
     <h2>Demo consignments</h2>
     <table>
       <thead><tr><th>Number</th><th>Postcode</th><th>State</th></tr></thead>
       <tbody>
-        <tr><td>HF1000001</td><td>2998</td><td>In transit</td></tr>
-        <tr><td>HF1000002</td><td>4997</td><td>Delivered</td></tr>
-        <tr><td>HF1000003</td><td>3996</td><td>Out for delivery</td></tr>
-        <tr><td>HF1000004</td><td>2998</td><td>Delayed</td></tr>
+        <tr><td class="mono">HF1000001</td><td class="mono">2998</td><td>In transit</td></tr>
+        <tr><td class="mono">HF1000002</td><td class="mono">4997</td><td>Delivered</td></tr>
+        <tr><td class="mono">HF1000003</td><td class="mono">3996</td><td>Out for delivery</td></tr>
+        <tr><td class="mono">HF1000004</td><td class="mono">2998</td><td>Delayed</td></tr>
       </tbody>
     </table>
 
     <h2>Try saying</h2>
     <ul id="suggestions" class="suggestions"></ul>
-    <p class="links"><a href="staff.html">Staff conversation log</a></p>
   </aside>
 
   <section class="chat" aria-label="Support chat">
@@ -35,15 +67,17 @@
     <div id="pending" class="pending" hidden>
       <p id="pending-summary"></p>
       <button type="button" id="confirm">Yes, go ahead</button>
-      <button type="button" id="cancel" class="quiet">No, cancel</button>
+      <button type="button" id="cancel" class="ghost">No, cancel</button>
     </div>
     <form id="composer" class="composer">
-      <label for="text" class="visually-hidden">Your message</label>
+      <label for="text" class="sr">Your message</label>
       <input id="text" autocomplete="off" maxlength="2000" placeholder="Type your message" required>
       <button type="submit">Send</button>
     </form>
   </section>
 </main>
+</div>
+<script src="theme.js"></script>
 <script src="chat.js"></script>
 </body>
 </html>

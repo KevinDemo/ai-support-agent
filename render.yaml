@@ -1,0 +1,9 @@
+# Render blueprint for the free web service plan. A free service sleeps when idle and has no lasting disk,
+# so the data resets on each restart. The static demo at https://kevindemo.github.io/ai-support-agent/ has neither limit.
+services:
+  - type: web
+    name: harbour-support-agent
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/info

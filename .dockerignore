@@ -1,0 +1,10 @@
+**/bin/
+**/obj/
+**/node_modules/
+**/TestResults/
+.git/
+.vs/
+docs/
+docs-site/
+static-demo/
+web/dist-demo/
